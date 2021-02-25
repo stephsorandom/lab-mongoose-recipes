@@ -21,7 +21,17 @@ mongoose
   })
   .then(() => {
     // Run your code here, after you have insured that the connection was made
+    Recipe.create({
+      title: "Yum yum",
+      level: "ameatuer",
+      ingredients: ["cheese", "dough", "eggs"],
+      cuisine: "american",
+      dishType: "main_course",
+      duration: 45,
+      creator: "Stephanie"
+    }).then(console.log)
   })
+
   .catch(error => {
     console.error('Error connecting to the database', error);
   });
