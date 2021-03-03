@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const Recipe = require("./models/Recipe.model");
 // Import of the data from './data.json'
 const data = require("./data");
+// console.log(data)
 
 const MONGODB_URI =
   "mongodb+srv://Stephanie:Stephanie@cluster0.olh0r.mongodb.net/mongooseRecipes?retryWrites=true&w=majority";
@@ -21,10 +22,12 @@ mongoose
     return self.connection.dropDatabase();
   })
   .then(async() => {
+ // Run your code here, after you have insured that the connection was made
 
+    //ITERATION 2
     await Recipe.create({
       title: "Beef Empanadas",
-      level: "Amatuer",
+      level: "Chef",
       ingredients: ["ground beef", "boiled potatoes", "olvies", "garlic"],
       cuisine: "Spanish",
       dishType: "breakfast",
@@ -32,12 +35,17 @@ mongoose
       creator: "Stephanie"
     }).then(console.log);
 
-    // Run your code here, after you have insured that the connection was made
-
+    //ITERATION 3
     await Recipe.insertMany(data).then(console.log)
 
+    //ITERATION 4
+    await Recipe.findOneAndUpdate({title: 'Rigatoni alla Genovese'}, {duration: 100}).then(console.log)
 
+    //ITERATION 5
+    await Recipe.deleteOne({title: 'Carrot Cake'}).then((res) => console.log('Carrot Cake Deleted'))
 
+    //ITERATION 6
+    mongoose.connection.close()
   })
 
   .catch(error => {
